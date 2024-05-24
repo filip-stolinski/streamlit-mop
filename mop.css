@@ -1,0 +1,29 @@
+.download-button {
+  text-decoration: none;
+  padding: 0.25em 0.75em;
+  margin: 0.2em;
+  cursor: pointer;
+  border-radius: 0.5em;
+  background-color: #28a745;
+  color: #fff;
+  border: 1px solid #28a745;
+}
+
+.download-button:hover {
+  background-color: transparent;
+  color: #c30202;
+  border-color: #c30202;
+}
+
+a:link {
+  text-decoration: none;
+  color: #fff;
+}
+
+.st-at {
+  background-color: #c30202;
+}
+
+* {
+  text-align: center;
+}

@@ -1,0 +1,5 @@
+ID,CAS,SMILES,DESCRIPTION
+PH1,80-09-1,C1=CC(=CC=C1O)S(=O)(=O)C2=CC=C(C=C2)[O-],"pH=7,5; charge= (-1)"
+PH2,80-09-1,C1=CC(=CC=C1[O-])S(=O)(=O)C2=CC=C(C=C2)[O-],pH=9; charge= (-2)
+PH3,95235-30-6,CC(C)OC1=CC=C(C=C1)S(=O)(=O)C2=CC=C(C=C2)[O-],pH=9; charge= (-1)
+PH4,97042-18-7,C=CCOC1=CC=C(C=C1)S(=O)(=O)C2=CC=C(C=C2)[O-],pH=9; charge= (-1)
