@@ -4,7 +4,7 @@ import os
 import shutil
 import zipfile
 import base64
-from .helper_functions import (
+from helper_functions import (
     smiles_to_mop,
     smiles_to_mol2,
     run_mop,
