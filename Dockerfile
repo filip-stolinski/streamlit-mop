@@ -20,4 +20,4 @@ RUN chmod +x /app/mopac_files/*
 EXPOSE 8501
 
 # Run streamlit app
-CMD ["streamlit", "run", "your_app.py"]
+CMD ["streamlit", "run", "run_mop.py"]
