@@ -67,16 +67,17 @@ def run_program(smiles: str, name: str) -> str:
     end_norm_file = check_job_ended_norm(out_file)
     if end_norm_file == "SETPI":
         file_for_alva = smiles_to_mol2(smiles, name)
+        st.warning(f"Mopac was not used/only Obabel transformation for {name}")
     elif end_norm_file:
         extracted_atoms, temp_pdb_file = extract_atoms_from_smiles(smiles, name)
         substitute_hetatm_atoms(end_norm_file, extracted_atoms)
         file_for_alva = pdb_to_mol2(end_norm_file)
     else:
-        st.warning(f"Mopac did not end job normally for {name}")
+        st.warning(f"App was not able to process {name}", icon="🚨")
         file_for_alva = None
 
     os.chdir("../..")
-    return file_for_alva
+    return file_for_alva, out_file
 
 
 def reset_state():
@@ -137,9 +138,18 @@ if "load_button" in locals() and (
 
             for smiles, name in zip(filtered_df[smiles_column], filtered_df[id_column]):
                 my_bar.progress(current_bar_length / bar_length, text=progress_text)
-                file_for_alva = run_program(smiles, name)
-                if file_for_alva:
-                    output_files.append(f"calc/{name}/{file_for_alva}")
+                try:
+                    file_for_alva, out_file = run_program(smiles, name)
+                    if file_for_alva and out_file:
+                        output_files.append(f"calc/{name}/{file_for_alva}")
+                        output_files.append(f"calc/{name}/{out_file}")
+                    elif file_for_alva and not out_file:
+                        output_files.append(f"calc/{name}/{file_for_alva}")
+                except:
+                    os.chdir("..")
+                    os.chdir("..")
+                    current_bar_length += 1
+                    continue
                 current_bar_length += 1
             progress_text = "Operation completed!"
             my_bar.progress(current_bar_length / bar_length, text=progress_text)
